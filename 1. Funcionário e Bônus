@@ -1,0 +1,39 @@
+public class Funcionario
+{
+    public double Salario { get; set; }
+    public Funcionario(double salario)
+    {
+        Salario = salario;
+    }
+    public virtual void CalcularBonus()
+    {
+        double bonus = Salario * 0.10;
+        Console.WriteLine($"BONUS: R$ {bonus} ");
+    }
+}
+
+public class Gerente : Funcionario
+{
+    public Gerente(double salario) : base(salario)
+    {}
+
+    public override void CalcularBonus()
+    {
+       double bonus = Salario * 0.20;
+        Console.WriteLine($"BONUS: R$ {bonus} ");
+    }
+}
+
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Funcionario funcionario1 = new Funcionario(2000.00);
+        Gerente gerente1 = new Gerente(5000.00);
+        Console.WriteLine("Funcionário:");
+        funcionario1.CalcularBonus();
+        Console.WriteLine("\nGerente:");
+        gerente1.CalcularBonus();
+    }
+}
