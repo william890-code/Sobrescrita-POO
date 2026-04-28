@@ -1,0 +1,48 @@
+public class Veiculo
+{
+    public double Distancia { get; set; }
+    public double LitrosConsumidos { get; set; }
+
+    public Veiculo(double distancia, double litrosConsumidos)
+    {
+        Distancia = distancia;
+        LitrosConsumidos = litrosConsumidos;
+    }
+    public virtual double CalcularConsumo(double Distancia, double LitrosConsumidos)
+    {
+        return 0;
+    }
+}
+
+public class Carro :Veiculo
+{
+    public Carro(double distancia, double litrosConsumidos) : base(distancia, litrosConsumidos)
+    { }
+
+    public override double CalcularConsumo(double Distancia, double LitrosConsumidos)
+    {
+        return Distancia / LitrosConsumidos;
+    }
+}
+
+public class CarroEletrico : Veiculo
+{
+    public CarroEletrico(double distancia, double litrosConsumidos) : base(distancia, litrosConsumidos)
+    { }
+    public override double CalcularConsumo(double Distancia, double LitrosConsumidos)
+    {
+        return 0; 
+    }
+}
+
+
+public class program 
+{
+    public static void Main(string[] args)
+    {
+        Carro carro1 = new Carro(500, 50);
+        CarroEletrico carroEletrico1 = new CarroEletrico(300, 0);
+        Console.WriteLine($"Consumo do Carro: {carro1.CalcularConsumo(carro1.Distancia, carro1.LitrosConsumidos)} km/l");
+        Console.WriteLine($"Consumo do Carro Elétrico: {carroEletrico1.CalcularConsumo(carroEletrico1.Distancia, carroEletrico1.LitrosConsumidos)} km/l");
+    }
+}*
