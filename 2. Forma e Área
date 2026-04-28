@@ -1,0 +1,74 @@
+public class Forma
+{
+    public virtual double CalcularArea()
+    {
+        return 0;    
+    }
+
+}
+
+public class Retangulo : Forma
+{
+    public double Largura { get; set; }                                                                                                                                                                                                                                                                                                                                                                                                                      
+    public double Altura { get; set; }
+
+    public Retangulo(double largura, double altura)
+    {
+        Largura = largura;
+        Altura = altura;
+    }
+
+    public override double CalcularArea()
+    {
+        return Largura * Altura;
+    }
+}
+
+public class Circulo : Forma
+{
+    public double Raio { get; set; }
+    public Circulo(double raio)
+    {
+        Raio = raio;
+    }
+    public override double CalcularArea()
+    {
+        return Math.Pow(Raio, 2) * Math.PI;
+    }
+}
+
+public class Triangulo :Forma
+{
+    public double Base { get; set; }
+    public double Altura { get; set; }
+
+    public Triangulo(double base_, double altura)
+    {
+        Base = base_;
+        Altura = altura;
+    }
+
+    public override double CalcularArea()
+    {
+        return Base * Altura / 2;
+    }
+
+}
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Forma[] formas = new Forma[]
+        {
+            new Retangulo(5, 3),
+            new Triangulo(4, 6),
+            new Circulo(4)
+        };
+
+        foreach(Forma f in formas)
+        {
+            Console.WriteLine($"{f.GetType().Name} - Área: {f.CalcularArea()}");
+        }
+
+    }
+}
