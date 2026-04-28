@@ -1,0 +1,55 @@
+public class  Conta
+{
+    protected double Saldo { get; set; }
+    public Conta(double saldo)
+    {
+        Saldo = saldo;
+    }
+    public virtual void Sacar(double valor)
+    {
+        if (valor <= Saldo)
+        {
+            Saldo -= valor;
+            Console.WriteLine($"Saque de R$ {valor} realizado. Saldo restante: R$ {Saldo}");
+        }
+        else
+        {
+            Console.WriteLine("Saldo insuficiente para realizar o saque.");
+        }
+    }
+}
+
+
+public class ContaPremium : Conta
+{
+    public ContaPremium(double saldo) : base(saldo)
+    { } 
+
+    public override void Sacar(double valor)
+    {
+        double limite = 1000; 
+        if (valor <= Saldo + limite)
+        {
+            Saldo -= valor;
+            Console.WriteLine($"Saque de R$ {valor} realizado. Saldo restante: R$ {Saldo}");
+        }
+        else
+        {
+            Console.WriteLine("Saldo insuficiente para realizar o saque, mesmo com o limite.");
+        }
+    }
+}
+
+public class program
+{
+    public static void Main(string[] args)
+    {
+        Conta conta1 = new Conta(500);
+        ContaPremium contaPremium1 = new ContaPremium(500);
+        Console.WriteLine("Conta Normal:");
+        conta1.Sacar(400);
+        conta1.Sacar(200);
+        Console.WriteLine("\nConta Premium:");
+        contaPremium1.Sacar(600);
+    }
+}
