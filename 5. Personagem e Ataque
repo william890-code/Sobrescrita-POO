@@ -1,0 +1,48 @@
+public class Personagem
+{
+    public virtual void Atacar()
+    {
+        Console.WriteLine("ataca com um golpe básico!");
+    }
+}
+
+public class Guerreiro : Personagem
+{
+    public string Nome { get; set; }
+     public Guerreiro(string nome) 
+    {
+        Nome = nome;
+    }
+
+    public override void Atacar()
+    {
+      Console.WriteLine($"{Nome} ataque fisíco!");
+    }
+}
+
+public class Mago: Personagem
+{
+    public string Nome { get; set; }
+    public Mago(string nome)
+    {
+        Nome = nome;
+    }
+
+    public override void Atacar ()
+    {
+        Console.WriteLine($"{Nome} ataque mágico!");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Guerreiro guerreiro1 = new Guerreiro("WILL");
+        Mago mago1 = new Mago("GANDALF");
+        Console.WriteLine("Guerreiro:");
+        guerreiro1.Atacar();
+        Console.WriteLine("\nMago:");
+        mago1.Atacar();
+    }
+}
