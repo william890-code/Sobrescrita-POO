@@ -1,12 +1,12 @@
 public class Produto
 {
     public string Nome { get; protected set; }
-    protected double Preco {  get; set; }
+    protected double Preco { get; set; }
 
     public Produto(string nome, double preco)
     {
         this.Nome = nome;
-        Preco = preco;   
+        this.Preco = preco;
     }
 
     public virtual double CalcularPrecoFinal()
@@ -20,24 +20,26 @@ public class Produto
 
 public class ProdutoComDesconto : Produto
 {
-    public ProdutoComDesconto(string Nome, double Preco) : base (Nome , Preco)
+    public ProdutoComDesconto(string Nome, double Preco) : base(Nome, Preco)
     { }
 
     public override double CalcularPrecoFinal()
     {
-        return Preco - (Preco * 10 / 100);
+        return Preco - (Preco * 15/ 100) ;
     }
 
 
 }
 
 
-public class Program 
+public class Program
 {
-   public static void Main( string[] args)
+    public static void Main(string[] args)
     {
-        Produto produto1 = new Produto("Mochila" , 280);
-        ProdutoComDesconto produto2 = new ProdutoComDesconto("PC", 12.000);
-        Console.WriteLine($"{produto1.Nome}");
-    
+        Produto produto1 = new Produto("Mochila", 280);
+        ProdutoComDesconto produto2 = new ProdutoComDesconto("PC", 5000);
+        Console.WriteLine($"{produto1.Nome} : R$ {produto1.CalcularPrecoFinal()}");
+        Console.WriteLine($"{produto2.Nome} : R$ {produto2.CalcularPrecoFinal()}");
+
+    }
 }
