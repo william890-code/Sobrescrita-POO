@@ -1,0 +1,38 @@
+public class Relatorio
+{
+    public string Titulo { get; set; }
+
+    public Relatorio(string titulo)
+    {
+        this.Titulo = titulo;
+    }
+
+
+    public virtual void Gerar()
+    {
+        Console.WriteLine($"Gerando relatório Padrão: {Titulo}");
+    }
+}
+
+public class RelatorioFinanceiro : Relatorio
+{
+    public int receitas { get; protected set; }
+    public int despesas { get; protected set; }
+
+    public RelatorioFinanceiro(int receitas, int despesas, string Titulo) : base(Titulo)
+    {
+        this.receitas = receitas;
+        this.despesas = despesas;
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Relatorio relatorio = new Relatorio("Relatório Trismestral de desempenho");
+        RelatorioFinanceiro relatorioFinanceiro = new RelatorioFinanceiro(150000, 50000, "Relatório Trimestral Financeiro");
+        Console.WriteLine($"{relatorio.Titulo}");
+        Console.WriteLine($"{relatorioFinanceiro.Titulo} - Receitas: {relatorioFinanceiro.receitas} - Despesas: {relatorioFinanceiro.despesas}");
+    }
+}
