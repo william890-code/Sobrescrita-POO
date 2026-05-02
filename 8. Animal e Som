@@ -1,0 +1,61 @@
+public class Animal
+{  
+    public string Name { get; set; }
+    
+    public Animal()
+    {
+        this.Name = "Animal Genérico";
+    }
+    public virtual void EmitirSom()
+{
+   Console.WriteLine("EMITE UM SOM GENÉRICO");
+}
+}
+
+public class Cachorro : Animal
+{
+    public string Nome { get; set; }
+
+    public Cachorro(string nome)
+    {
+        this.Nome = nome;
+    }
+
+   public override void EmitirSom()
+    {
+        Console.WriteLine($"{Nome} late: AU AU!");
+    }
+}
+public class Gato : Animal
+{
+    public string Nome { get; set; }
+    
+    public Gato(string nome)
+    {
+        this.Nome = nome;
+    }
+
+    public override void EmitirSom()
+    {
+        Console.WriteLine($"{Nome} mia: MIAU MIAU!");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        List<Animal> animais = new List<Animal>
+        {
+            new Animal(),
+            new Cachorro("Rex"),
+            new Gato("Mimi")
+        };
+        
+        foreach (Animal animal in animais)
+        {
+            animal.EmitirSom();
+        }
+    }
+
+}
