@@ -1,0 +1,55 @@
+public class Notificacao
+{
+    public string Mensagem { get; protected set; }
+
+    public Notificacao(string mensagem)
+    {
+        this.Mensagem = mensagem;
+    }
+
+    public virtual string Enviar()
+    {
+        return Mensagem;
+    }
+}
+
+public class Email : Notificacao
+{
+    public string EnderecoEmail { get; set; }
+
+    public Email(string enderecoEmail, string mensagem) : base(mensagem)
+    {
+        EnderecoEmail = enderecoEmail;
+    }
+
+    public override string Enviar()
+    {
+         return base.Enviar();
+    }
+}
+
+public class SMS : Notificacao
+{
+    public string Numero { get; set; }
+
+    public SMS(string numero, string mensagem) : base(mensagem)
+    {
+        Numero = numero;
+    }
+
+    public override string Enviar()
+    {
+        return base.Enviar();
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Email email = new Email("Willfoda890@gmail.com" , "Código de segurança: 123456 ");
+        SMS sms = new SMS("11915943619", "Código de segurança: 123456");
+        Console.WriteLine($"ENVIADO PARA O EMAIL: {email.EnderecoEmail} : {email.Enviar()}");
+        Console.WriteLine($"ENVIADO PARA O NÚMERO: {sms.Numero} : {sms.Enviar()}");
+    }
+}
