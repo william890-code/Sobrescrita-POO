@@ -1,0 +1,58 @@
+public class Jogo
+{
+    public string Nome { get; set; }
+    public string Genero { get; set; }
+    public string Personsagem { get; set; }
+    public int Dano { get; set; }
+
+    public Jogo(string nome, string genero, string personagem, int dano)
+    {
+        this.Nome = nome;
+        this.Genero = genero;
+        this.Personsagem = personagem;
+        this.Dano = dano;
+    }
+
+    public virtual double CalcularPontuacao()
+    {
+        return Dano * 10;
+    }
+}
+
+public class JogoOnline : Jogo
+{
+    public int NumeroDeJogadores { get; set; }
+    public JogoOnline(string nome, string genero, string personagem, int dano, int numeroDeJogadores) : base(nome, genero, personagem, dano)
+    {
+        this.NumeroDeJogadores = numeroDeJogadores;
+    }
+    public override double CalcularPontuacao()
+    {
+        return base.CalcularPontuacao() + (NumeroDeJogadores * 5);
+    }
+}
+
+
+public class JogoOffline : Jogo
+{
+    public int NivelDificuldade { get; set; }
+    public JogoOffline(string nome, string genero, string personagem, int dano, int nivelDificuldade) : base(nome, genero, personagem, dano)
+    {
+        this.NivelDificuldade = nivelDificuldade;
+    }
+    public override double CalcularPontuacao()
+    {
+        return base.CalcularPontuacao() + (NivelDificuldade * 10);
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        JogoOnline jogoOnline = new JogoOnline("Fortnite", "Battle Royale", "Jonesy", 50, 100);
+        JogoOffline jogoOffline = new JogoOffline("The Witcher 3", "RPG", "Geralt", 70, 3);
+        Console.WriteLine($"{jogoOnline.Nome} - Pontuação: {jogoOnline.CalcularPontuacao()}");
+        Console.WriteLine($"{jogoOffline.Nome} - Pontuação: {jogoOffline.CalcularPontuacao()}");
+    }
+}
